@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 import Dropdown from "./Dropdown.vue";
 import InputError from "./InputError.vue";
@@ -21,6 +21,7 @@ const onCancelEditing = () => {
     form.reset();
     form.clearErrors();
 }
+
 </script>
 
 <template>
@@ -49,6 +50,11 @@ const onCancelEditing = () => {
                             @click="toggleEditing">
                             Edit
                         </button>
+                        <Link as="button"
+                            class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out"
+                            method="delete" :href="route('chirps.destroy', chirp.id)">
+                        Delete
+                        </Link>
                     </template>
                 </Dropdown>
             </div>
