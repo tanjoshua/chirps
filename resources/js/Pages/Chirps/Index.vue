@@ -1,5 +1,6 @@
 <script setup>
 import Chirp from "@/Components/Chirp.vue";
+import InputError from "@/Components/InputError.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
 
@@ -18,7 +19,7 @@ defineProps(['chirps'])
             <form @submit.prevent="form.post(route('chirps.store'), { onSuccess: () => form.reset() })"
                 class="grid gap-4">
                 <Textarea v-model="form.message" />
-                <InputError :message="form.errors.message" class="mt-2" />
+                <InputError :message="$page.props.errors.message" class="mt-2" />
                 <div>
                     <Button type="submit" label="Chirp" />
                 </div>

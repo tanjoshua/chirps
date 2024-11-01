@@ -2,6 +2,7 @@
 import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 import Dropdown from "./Dropdown.vue";
+import InputError from "./InputError.vue";
 
 const props = defineProps(['chirp']);
 
@@ -55,7 +56,7 @@ const onCancelEditing = () => {
             <form v-if="isEditing"
                 @submit.prevent="form.put(route('chirps.update', chirp.id), { onSuccess: () => isEditing = false })">
                 <Textarea v-model="form.message" />
-                <InputError :message="form.errors.message" class="mt-2" />
+                <InputError :message="$page.props.errors.message" class="mt-2" />
                 <div class="space-x-2">
                     <Button type="submit" label="Save" />
                     <Button label="Cancel" @click="onCancelEditing" severity="secondary" />
